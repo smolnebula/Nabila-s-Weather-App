@@ -18,6 +18,7 @@
       crossorigin="anonymous"
     ></script>
   </head>
+
   <body>
     <div class="container">
       <div class="card">
@@ -47,15 +48,72 @@
               Current Location
             </button>
           </form>
+
+            <section class="body">
+              <div class="row justify-content-center"> </div>
+
+                <div class="col-lg-4">
+                  <ul class="current">
+                    <li>
+                      <span class="current-city"></span>
+                    </li>
+                    <li>
+                      <span class="current-date"></span>
+                    </li>
+                    <li>
+                      <span class="current-time"></span>
+                    </li>
+
+                    <li>
+                      <span id="temperature"></span>
+                      <span id="units">
+                        <a href="#" id="farenheit-link">°F </a>
+                        |
+                        <a href="#" id="celcius-link">°C </a>
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+  
+                <div class="col-md-3">
+                  <div class="weather-details">
+                    <div class="card" id="weather-details">
+                      <div class="card-header">
+                        <h5 class="card-text" id="description"></h5>
+                      </div>
+                      <i class="fa-solid fa-cloud-bolt-sun"></i>
+                      <i class="fa-solid fa-cloud-sun"></i>
+
+                      <div class="card-body">
+                        <ul class="weather">
+                          <li>
+                            <span class="detail">Wind:</span>
+                            <span id="wind"></span>km/h
+                          </li>
+                          <li>
+                            <span class="detail">Humidity:</span>
+                            <span id="humidity"></span>%
+                          </li>
+                        </ul>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     </div>
+
     <div id="coded-by">
       <a href="https://github.com/smolnebula/Nabila-s-Weather-App">
-        Open-source code
-      </a>
+        Open-source code</a
+      >
       by Nabila Chowdhury
     </div>
+
     <script src="src/script.js"></script>
+
   </body>
+
 </html>
