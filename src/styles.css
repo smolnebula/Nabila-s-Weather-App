@@ -1,5 +1,18 @@
+#search-bar {
+  padding-top: 20px;
+  max-width: 70%;
+  margin: 0 auto;
+}
+
 #current-location-button {
   margin-left: 10px;
+}
+
+.card-body {
+  background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+  text-align: center;
+  font-family: monospace;
+  font-size: 15px;
 }
 
 #coded-by {
