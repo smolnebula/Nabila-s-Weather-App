@@ -92,3 +92,6 @@ function handleSubmit(event) {
 }
 
 searchForm.addEventListener("submit", handleSubmit);
+
+//On-load data (so I have live data displayed before entering or searching)
+searchCity("New York");

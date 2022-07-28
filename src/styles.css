@@ -1,3 +1,11 @@
+ul {
+  padding-top: 10px;
+}
+
+li {
+  list-style: none;
+}
+
 #search-bar {
   padding-top: 20px;
   max-width: 70%;
@@ -6,6 +14,10 @@
 
 #current-location-button {
   margin-left: 10px;
+}
+
+.body {
+  font-family: "Poppins", sans-serif;
 }
 
 .card-body {
@@ -27,7 +39,6 @@
 .current {
   text-align: center;
   padding: 0;
-  list-style-type: none;
 }
 
 .current-city {
@@ -45,10 +56,58 @@
   font-size: larger;
 }
 
+#temperature {
+  color: gray;
+  font-size: 80px;
+}
+
+#units {
+  position: relative;
+  top: -45px;
+}
+
+#celcius-link,
+#farenheit-link {
+  text-decoration: none;
+  font-size: larger;
+}
+
 .weather-details {
   text-align: center;
   padding: 0;
   list-style-type: none;
+}
+
+.weather {
+  padding-left: 0;
+  font-size: 16px;
+}
+
+.day {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#weekdates {
+  font-weight: bolder;
+  color: darkblue;
+}
+
+#week-temps {
+  font-weight: bold;
+}
+
+.fa-cloud-sun {
+  font-size: 100px;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+}
+
+.fa-cloud-moon-rain {
+  font-size: 50px;
+  padding: 15px 0px 15px 0px;
 }
 
 #coded-by {
