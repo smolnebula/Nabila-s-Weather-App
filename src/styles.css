@@ -15,7 +15,37 @@
   font-size: 15px;
 }
 
+.col-lg-4 {
+  padding-top: 15px;
+}
+
+.col-md-3 {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
 .current {
+  text-align: center;
+  padding: 0;
+  list-style-type: none;
+}
+
+.current-city {
+  color: blue;
+  font-size: 60px;
+  font-family: "Koulen", cursive;
+}
+
+.current-date {
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+.current-time {
+  font-size: larger;
+}
+
+.weather-details {
   text-align: center;
   padding: 0;
   list-style-type: none;
