@@ -64,6 +64,22 @@ function searchCity(city) {
   axios.get(apiUrl).then(displayWeatherCondition);
 }
 
+//Give current location's weather data
+function getCurrentLocation(position) {
+  let lat = position.coords.latitude;
+  let long = position.coords.longitude;
+  let geoUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=${units}`;
+  axios.get(geoUrl).then(displayWeatherCondition);
+}
+
+function searchLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(getCurrentLocation);
+}
+
+let currentLocationButton = document.querySelector("#current-location-button");
+currentLocationButton.addEventListener("click", searchLocation);
+
 //Change city
 let searchInput = document.querySelector("#search-input");
 let searchForm = document.querySelector("#search-bar");
