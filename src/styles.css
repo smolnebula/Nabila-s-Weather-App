@@ -72,6 +72,15 @@ li {
   font-size: larger;
 }
 
+#description {
+  text-transform: capitalize;
+}
+
+#current-temp-icon {
+  width: 50%;
+  margin: 0 auto;
+}
+
 .weather-details {
   text-align: center;
   padding: 0;
@@ -112,4 +121,8 @@ li {
 
 #coded-by {
   text-align: center;
+  font-style: italic;
+  font-size: smaller;
+  font-family: monospace;
+  padding-top: 5px;
 }

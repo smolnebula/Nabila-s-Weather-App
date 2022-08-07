@@ -33,12 +33,16 @@ let todaysDay = document.querySelector("li .current-date");
 todaysDay.innerHTML = `${currentDay}, ${currentMonth} ${currentDate}, ${currentYear}`;
 
 let currentHour = now.getHours();
+if (currentHour < 10) {
+  currentHour = `0${currentHour}`;
+}
+
 let currentMinutes = now.getMinutes();
 if (currentMinutes < 10) {
   currentMinutes = `0${currentMinutes}`;
 }
 let todaysTime = document.querySelector("li .current-time");
-todaysTime.innerHTML = `${currentHour}:${currentMinutes}`;
+todaysTime.innerHTML = `Last updated: <strong> ${currentHour}:${currentMinutes} </strong>`;
 
 //API for live weather data
 let endPoint = "https://api.openweathermap.org/data/2.5/weather?";
@@ -56,7 +60,15 @@ function displayWeatherCondition(response) {
   let wind = document.querySelector("#wind");
   wind.innerHTML = Math.round(response.data.wind.speed);
   let description = document.querySelector("#description");
-  description.innerHTML = response.data.weather[0].main;
+  description.innerHTML = response.data.weather[0].description;
+
+  let currentTempIcon = document.querySelector("#current-temp-icon");
+  let weatherCode = response.data.weather[0].icon;
+  currentTempIcon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${weatherCode}@2x.png`
+  );
+  currentTempIcon.setAttribute("alt", `${description}`);
 }
 
 function searchCity(city) {
