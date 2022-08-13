@@ -49,12 +49,32 @@ let endPoint = "https://api.openweathermap.org/data/2.5/weather?";
 let apiKey = "ff3837d74098813bfcef9f731c3749cf";
 let units = "imperial";
 
+//Change temperature unit to Celcius
+function displayCelciusTemp(event) {
+  event.preventDefault();
+  farenheitLink.classList.remove("active");
+  celciusLink.classList.add("active");
+  let temperatureElement = document.querySelector("#temperature");
+  let celciusTemp = Math.round((farenheitTemp - 32 * 5) / 9);
+  temperatureElement.innerHTML = celciusTemp;
+}
+
+//Change temperature unit back to Farenheit
+function displayFarenheitTemp(event) {
+  event.preventDefault();
+  farenheitLink.classList.add("active");
+  celciusLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(farenheitTemp);
+}
+
 // Give searched city's weather data
 function displayWeatherCondition(response) {
   let currentCity = document.querySelector("li .current-city");
   currentCity.innerHTML = response.data.name;
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  farenheitTemp = response.data.main.temp;
+  temperatureElement.innerHTML = Math.round(farenheitTemp);
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = response.data.main.humidity;
   let wind = document.querySelector("#wind");
@@ -104,6 +124,16 @@ function handleSubmit(event) {
 }
 
 searchForm.addEventListener("submit", handleSubmit);
+
+let farenheitTemp = null; //To prevent loop of conversion F->C function
+
+//Change temperature unit to Celcius
+let celciusLink = document.querySelector("#celcius-link");
+celciusLink.addEventListener("click", displayCelciusTemp);
+
+//Change temperature unit back to Farenheit
+let farenheitLink = document.querySelector("#farenheit-link");
+farenheitLink.addEventListener("click", displayFarenheitTemp);
 
 //On-load data (so I have live data displayed before entering or searching)
 searchCity("New York");

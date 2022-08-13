@@ -126,3 +126,13 @@ li {
   font-family: monospace;
   padding-top: 5px;
 }
+
+.active {
+  color: black;
+  cursor: default;
+}
+
+.active:hover {
+  color: black;
+  cursor: pointer;
+}
