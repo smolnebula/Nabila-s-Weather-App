@@ -49,6 +49,13 @@ let endPoint = "https://api.openweathermap.org/data/2.5/weather?";
 let apiKey = "ff3837d74098813bfcef9f731c3749cf";
 let units = "imperial";
 
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let forecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${units}`;
+  console.log(forecastUrl);
+  axios.get(forecastUrl).then(displayForecast);
+}
+
 // Give searched city's weather data
 function displayWeatherCondition(response) {
   let currentCity = document.querySelector("li .current-city");
@@ -73,6 +80,8 @@ function displayWeatherCondition(response) {
     `http://openweathermap.org/img/wn/${weatherCode}@2x.png`
   );
   currentTempIcon.setAttribute("alt", `${description}`);
+
+  getForecast(response.data.coord);
 }
 
 function searchCity(city) {
@@ -134,6 +143,55 @@ function handleSubmit(event) {
 }
 
 searchForm.addEventListener("submit", handleSubmit);
+
+function convertDtDate(timestamp) {
+  let forecastTimestamp = new Date(timestamp * 1000);
+  let forecastDate = forecastTimestamp.getDate();
+  let forecastMonth = forecastTimestamp.getMonth() + 1;
+  return `${forecastMonth}/${forecastDate}`;
+}
+
+function convertDtDay(timestamp) {
+  let forecastTimestamp = new Date(timestamp * 1000);
+  let forecastDay = forecastTimestamp.getDay();
+  let forecastDays = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+  return forecastDays[forecastDay];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+
+  let forecastElement = document.querySelector("#week-forecast");
+
+  let forecastHTML = `<div class="row" id="weekdays">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index > 0 && index < 7) {
+      forecastHTML =
+        forecastHTML +
+        `
+          <div class="col day">
+            <div class="weekday"> ${convertDtDay(forecastDay.dt)} </div>
+            <div class="weekdate"> ${convertDtDate(forecastDay.dt)} </div>
+            <div class="col icon">
+              <img src="http://openweathermap.org/img/wn/${
+                forecastDay.weather[0].icon
+              }@2x.png" /> 
+            </div>
+            <div class="week-temp"> 
+              <span class="week-temp-max"> ${Math.round(
+                forecastDay.temp.max
+              )}° </span>
+              <span class="week-temp-min"> ${Math.round(
+                forecastDay.temp.min
+              )}° </span> 
+            </div>
+          </div>
+        `;
+    }
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
 
 //On-load data (so I have live data displayed before entering or searching)
 searchCity("New York");
