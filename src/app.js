@@ -56,6 +56,16 @@ function getForecast(coordinates) {
   axios.get(forecastUrl).then(displayForecast);
 }
 
+// Convert OpenWeather icons to FontAwesome icons
+
+function convertWeatherIcons(response) {
+  let tempIcon = document.querySelector("#temperature-icon");
+  let weatherCode = response.data.weather[0].icon;
+  if (weatherCode === "01d") {
+    return "fa-solid fa-sun";
+  } else if (weatherCode === "01n") return "fa-solid fa-moon";
+}
+
 // Give searched city's weather data
 function displayWeatherCondition(response) {
   let currentCity = document.querySelector("li .current-city");
@@ -73,12 +83,9 @@ function displayWeatherCondition(response) {
   let description = document.querySelector("#description");
   description.innerHTML = response.data.weather[0].description;
 
-  let currentTempIcon = document.querySelector("#current-temp-icon");
+  let tempIcon = document.querySelector("#temperature-icon");
   let weatherCode = response.data.weather[0].icon;
-  currentTempIcon.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${weatherCode}@2x.png`
-  );
+  tempIcon.setAttribute("class", convertWeatherIcons(weatherCode));
   currentTempIcon.setAttribute("alt", `${description}`);
 
   getForecast(response.data.coord);
@@ -111,7 +118,7 @@ function displayCelciusTemp(event) {
   farenheitLink.classList.remove("active");
   celciusLink.classList.add("active");
   let temperatureElement = document.querySelector("#temperature");
-  let celciusTemp = Math.round((farenheitTemp - 32 * 5) / 9);
+  let celciusTemp = Math.round(((farenheitTemp - 32) * 5) / 9);
   temperatureElement.innerHTML = celciusTemp;
 }
 
@@ -144,6 +151,7 @@ function handleSubmit(event) {
 
 searchForm.addEventListener("submit", handleSubmit);
 
+//Weekly forecast
 function convertDtDate(timestamp) {
   let forecastTimestamp = new Date(timestamp * 1000);
   let forecastDate = forecastTimestamp.getDate();
@@ -173,9 +181,9 @@ function displayForecast(response) {
             <div class="weekday"> ${convertDtDay(forecastDay.dt)} </div>
             <div class="weekdate"> ${convertDtDate(forecastDay.dt)} </div>
             <div class="col icon">
-              <img src="http://openweathermap.org/img/wn/${
+              <img src="http://openweathermap.org/img/wn/${convertWeatherIcons(
                 forecastDay.weather[0].icon
-              }@2x.png" /> 
+              )}@2x.png" /> 
             </div>
             <div class="week-temp"> 
               <span class="week-temp-max"> ${Math.round(
