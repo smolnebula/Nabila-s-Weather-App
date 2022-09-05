@@ -6,6 +6,10 @@ li {
   list-style: none;
 }
 
+i {
+  padding: 10px 10px;
+}
+
 #search-bar {
   padding-top: 20px;
   max-width: 70%;
@@ -76,8 +80,12 @@ li {
   text-transform: capitalize;
 }
 
-#current-temp-icon {
-  width: 45%;
+.temperature-icon {
+  font-size: 100px;
+}
+
+.fa-solid {
+  font-size: 50px;
   margin: 0 auto;
 }
 

@@ -58,12 +58,31 @@ function getForecast(coordinates) {
 
 // Convert OpenWeather icons to FontAwesome icons
 
-function convertWeatherIcons(response) {
-  let tempIcon = document.querySelector("#temperature-icon");
-  let weatherCode = response.data.weather[0].icon;
-  if (weatherCode === "01d") {
+function convertWeatherIcons(iconCode) {
+  if (iconCode === "01d") {
     return "fa-solid fa-sun";
-  } else if (weatherCode === "01n") return "fa-solid fa-moon";
+  } else if (iconCode === "01n") {
+    return "fa-solid fa-moon";
+  } else if (iconCode === "02d") {
+    return "fa-solid fa-clouds-sun";
+  } else if (iconCode === "02n") {
+    return "fa-solid fa-clouds-moon";
+  } else if (iconCode === "03d" || iconCode === "03n") {
+    return "fa-solid fa-cloud";
+  } else if (iconCode === "04d" || iconCode === "04n") {
+    return "fa-duotone fa-clouds";
+  } else if (iconCode === "09d" || iconCode === "09n") {
+    return "fa-solid fa-cloud-showers-heavy";
+  } else if (iconCode === "10d") {
+    return "fa-solid fa-cloud-sun-rain";
+  } else if (iconCode === "10n") {
+    return "fa-solid fa-cloud-moon-rain";
+  } else if (iconCode === "11d" || iconCode === "11n") {
+    return "fa-solid fa-cloud-bolt";
+  } else if (iconCode === "13d" || iconCode === "13n") {
+    return "fa-solid fa-snowflake";
+  } else if (iconCode === "50d" || iconCode === "50n")
+    return "fa-duotone fa-cloud-fog";
 }
 
 // Give searched city's weather data
@@ -86,7 +105,6 @@ function displayWeatherCondition(response) {
   let tempIcon = document.querySelector("#temperature-icon");
   let weatherCode = response.data.weather[0].icon;
   tempIcon.setAttribute("class", convertWeatherIcons(weatherCode));
-  currentTempIcon.setAttribute("alt", `${description}`);
 
   getForecast(response.data.coord);
 }
@@ -181,9 +199,9 @@ function displayForecast(response) {
             <div class="weekday"> ${convertDtDay(forecastDay.dt)} </div>
             <div class="weekdate"> ${convertDtDate(forecastDay.dt)} </div>
             <div class="col icon">
-              <img src="http://openweathermap.org/img/wn/${convertWeatherIcons(
+              <i class="${convertWeatherIcons(
                 forecastDay.weather[0].icon
-              )}@2x.png" /> 
+              )}"></i> 
             </div>
             <div class="week-temp"> 
               <span class="week-temp-max"> ${Math.round(
