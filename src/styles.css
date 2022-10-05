@@ -81,12 +81,14 @@ i {
 }
 
 .temperature-icon {
-  font-size: 100px;
+  font-size: 200px;
+  padding: 10px auto;
 }
 
 .fa-solid {
   font-size: 50px;
   margin: 0 auto;
+  color: #1a1a40;
 }
 
 .weather-details {

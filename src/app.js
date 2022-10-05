@@ -64,13 +64,13 @@ function convertWeatherIcons(iconCode) {
   } else if (iconCode === "01n") {
     return "fa-solid fa-moon";
   } else if (iconCode === "02d") {
-    return "fa-solid fa-clouds-sun";
+    return "fa-solid fa-cloud-sun";
   } else if (iconCode === "02n") {
-    return "fa-solid fa-clouds-moon";
+    return "fa-solid fa-cloud-moon";
   } else if (iconCode === "03d" || iconCode === "03n") {
     return "fa-solid fa-cloud";
   } else if (iconCode === "04d" || iconCode === "04n") {
-    return "fa-duotone fa-clouds";
+    return "fa-solid fa-cloud";
   } else if (iconCode === "09d" || iconCode === "09n") {
     return "fa-solid fa-cloud-showers-heavy";
   } else if (iconCode === "10d") {
@@ -82,7 +82,7 @@ function convertWeatherIcons(iconCode) {
   } else if (iconCode === "13d" || iconCode === "13n") {
     return "fa-solid fa-snowflake";
   } else if (iconCode === "50d" || iconCode === "50n")
-    return "fa-duotone fa-cloud-fog";
+    return "fa-solid fa-smog";
 }
 
 // Give searched city's weather data
